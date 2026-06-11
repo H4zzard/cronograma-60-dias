@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<title>60 Dias de Questões PMPE 2026 | CPPEM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Barlow:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+<style>
+/* ===== VARIÁVEIS — Identidade v2 ===== */
+:root{
+  --bg:#07070c; --bg1:#0c0c17; --bg2:#10101c; --bg3:#14142a;
+  --tx:#eeeef5; --tx2:#aaaabf; --tx3:#666680;
+  --gold:#c9a84c; --goldl:#e2c068; --goldd:#a07830; --goldxl:#f0d98c;
+  --goldglow:#c9a84c22; --goldbdr:#c9a84c30; --goldbdr2:#c9a84c55;
+  --red:#c92020; --redl:#ef4444;
+  --grn:#16a34a; --grnl:#22c55e;
+  --blue:#2563eb; --bdr:#1c1c30; --bdr2:#22223a;
+  --r:10px; --rsm:6px;
+  --fh:'Barlow Condensed',sans-serif;
+  --fb:'Barlow',sans-serif;
+  --fd:'Bebas Neue',sans-serif;
+  --sidebar-w:260px;
+  --transition:all 0.28s cubic-bezier(0.4,0,0.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--fb);background:var(--bg);color:var(--tx);
+  min-height:100vh;overflow-x:hidden;position:relative;line-height:1.5;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 5% 0%,#c9a84c0b 0%,transparent 55%),
+    radial-gradient(ellipse 60% 40% at 95% 100%,#2563eb06 0%,transparent 50%);
+  background-attachment:fixed;
+}
+
+/* Grain overlay */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity:.5;
+}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ===== SIDEBAR ===== */
+.sidebar{
+  position:fixed;left:0;top:0;width:var(--sidebar-w);height:100vh;
+  background:linear-gradient(180deg,#04040a 0%,#0a0a14 50%,#04040a 100%);
+  border-right:1px solid var(--goldbdr);
+  display:flex;flex-direction:column;z-index:100;
+  transition:var(--transition);overflow:hidden;
+}
+.sidebar::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),var(--goldl),transparent);
+}
+.sidebar::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent,transparent 59px,#c9a84c06 60px),
+             repeating-linear-gradient(90deg,transparent,transparent 59px,#c9a84c06 60px);
+}
+
+.sidebar-logo{
+  display:flex;align-items:center;gap:12px;
+  padding:26px 20px 22px;border-bottom:1px solid var(--bdr);
+}
+.sidebar-logo .emblem-svg{width:46px;height:46px;filter:drop-shadow(0 0 8px #c9a84c40)}
+.logo-text{display:flex;flex-direction:column}
+.logo-main{font-family:var(--fd);font-size:22px;color:var(--gold);line-height:1;letter-spacing:3px}
+.logo-sub{font-size:9px;font-weight:700;color:var(--tx3);letter-spacing:4px;text-transform:uppercase;margin-top:4px}
+
+/* Sidebar progress */
+.sidebar-prog{padding:14px 20px 10px;border-bottom:1px solid var(--bdr)}
+.sp-label{font-family:var(--fh);font-size:.6rem;font-weight:700;letter-spacing:.14em;color:var(--tx3);text-transform:uppercase;margin-bottom:7px}
+.sp-track{height:4px;background:var(--bdr2);border-radius:10px;overflow:hidden;margin-bottom:5px}
+.sp-fill{height:100%;background:linear-gradient(90deg,var(--goldd),var(--goldl));border-radius:10px;transition:width .6s ease;width:0%}
+.sp-pct{font-family:var(--fd);font-size:1.6rem;color:var(--gold)}
+
+.sidebar-nav{flex:1;padding:8px 0;overflow-y:auto}
+.nav-item{
+  display:flex;align-items:center;gap:14px;
+  padding:13px 20px;
+  font-family:var(--fh);font-size:.78rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--tx3);
+  transition:var(--transition);border-left:3px solid transparent;
+}
+.nav-item:hover{color:var(--tx);background:#c9a84c08;border-left-color:var(--goldbdr2)}
+.nav-item.active{color:var(--gold);background:#c9a84c0d;border-left-color:var(--gold)}
+.nav-icon{font-size:16px;width:20px;text-align:center}
+
+.sidebar-footer{padding:18px 20px;border-top:1px solid var(--bdr)}
+.sidebar-motto{font-family:var(--fh);font-size:.68rem;color:var(--tx3);font-style:italic;line-height:1.6;text-align:center}
+
+/* Mobile topbar — base */
+.mobile-topbar{
+  display:none;position:fixed;top:0;left:0;right:0;
+  height:56px;
+  padding-top:env(safe-area-inset-top, 0px);
+  height:calc(56px + env(safe-area-inset-top, 0px));
+  background:var(--bg1);border-bottom:1px solid var(--bdr);
+  z-index:200;align-items:center;padding-left:16px;padding-right:16px;gap:12px;
+}
+.mobile-topbar::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.hamburger{display:flex;flex-direction:column;gap:5px;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--gold);border-radius:2px;transition:var(--transition)}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-logo{display:flex;align-items:center;gap:8px;flex:1;font-family:var(--fd);font-size:1.1rem;letter-spacing:3px;color:var(--gold)}
+.mobile-pct{font-family:var(--fd);font-size:1.2rem;color:var(--gold)}
+
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:90;backdrop-filter:blur(3px)}
+.overlay.active{display:block}
+
+/* ===== MAIN ===== */
+.main-content{margin-left:var(--sidebar-w);min-height:100vh;position:relative;z-index:1}
+
+/* ===== HERO ===== */
+.hero-header{
+  background:linear-gradient(160deg,#05050e 0%,#0a0a14 50%,#0c0c1c 100%);
+  padding:60px 48px 48px;position:relative;overflow:hidden;
+  border-bottom:1px solid var(--bdr);
+}
+.hero-bg-pattern{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:
+    radial-gradient(circle at 85% 30%,#c9a84c0a 0%,transparent 40%),
+    repeating-linear-gradient(45deg,#c9a84c04 0px,#c9a84c04 1px,transparent 1px,transparent 40px);
+}
+.hero-content{display:flex;align-items:center;gap:36px;position:relative;margin-bottom:40px}
+.hero-emblem{flex-shrink:0;animation:pulseGlow 3s ease-in-out infinite}
+@keyframes pulseGlow{0%,100%{filter:drop-shadow(0 0 10px #c9a84c55)}50%{filter:drop-shadow(0 0 22px #c9a84c99)}}
+.hero-svg{width:110px;height:110px}
+.hero-text{flex:1}
+.hero-pretitle{font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.2em;color:var(--tx3);text-transform:uppercase;margin-bottom:10px}
+.hero-title{font-family:var(--fd);text-transform:uppercase;line-height:.9;margin-bottom:10px;letter-spacing:.04em}
+.hero-title .line1{font-size:clamp(2.8rem,7vw,5.5rem);background:linear-gradient(160deg,#f0d580 0%,var(--gold) 35%,#a07830 70%,var(--goldl) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block}
+.hero-title .line2{font-size:clamp(1.3rem,3.5vw,2.6rem);background:linear-gradient(160deg,#fff 0%,var(--tx2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;letter-spacing:.1em}
+.hero-title .line3{font-size:clamp(2.8rem,7.5vw,5.8rem);font-family:var(--fh);font-weight:900;background:linear-gradient(160deg,#e2c068 0%,var(--gold) 40%,#8a6520 80%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:block;text-transform:uppercase;letter-spacing:.04em}
+.hero-sub{font-family:var(--fh);font-size:.8rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--tx3)}
+.hero-dec{width:160px;height:1px;margin:14px 0;background:linear-gradient(90deg,transparent,var(--gold),var(--goldl),transparent)}
+
+/* Frase motivacional */
+.frase-section{
+  background:linear-gradient(135deg,#0d0d18,#11111e);
+  border:1px solid var(--goldbdr);border-radius:var(--r);
+  padding:22px 32px;margin-bottom:24px;position:relative;overflow:hidden;text-align:center;
+}
+.frase-section::before{content:'❝';position:absolute;left:16px;top:8px;font-size:2.8rem;color:#c9a84c0e;font-family:Georgia,serif;line-height:1}
+.frase-section::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,#c9a84c06,transparent);pointer-events:none}
+.frase-txt{font-family:var(--fh);font-size:clamp(1rem,2.2vw,1.4rem);font-weight:700;color:var(--goldl);letter-spacing:.03em;line-height:1.3;transition:opacity .4s ease,transform .4s ease;position:relative;z-index:1}
+.frase-txt.out{opacity:0;transform:translateY(-6px)}
+.frase-tag{font-family:var(--fh);font-size:.62rem;font-weight:700;letter-spacing:.16em;color:var(--tx3);text-transform:uppercase;margin-top:8px;position:relative;z-index:1}
+
+/* Global progress */
+.global-progress-section{
+  background:#c9a84c08;border:1px solid var(--goldbdr);border-radius:var(--r);padding:22px 28px;
+}
+.progress-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.progress-label{font-family:var(--fh);font-size:.68rem;font-weight:700;letter-spacing:.14em;color:var(--tx3);text-transform:uppercase}
+.progress-percent{font-family:var(--fd);font-size:2rem;color:var(--gold)}
+.progress-track{height:8px;background:var(--bdr2);border-radius:10px;overflow:hidden;margin-bottom:18px;position:relative}
+.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--goldd),var(--gold),var(--goldl));border-radius:10px;transition:width .8s cubic-bezier(0.4,0,0.2,1);position:relative}
+.progress-fill::after{content:'';position:absolute;top:0;right:0;width:30px;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.25));animation:shine 2s infinite}
+@keyframes shine{0%{opacity:0}50%{opacity:1}100%{opacity:0}}
+.progress-stats-row{display:flex;gap:28px;flex-wrap:wrap}
+.pstat-val{display:block;font-family:var(--fd);font-size:1.8rem;color:var(--gold)}
+.pstat-lbl{display:block;font-family:var(--fh);font-size:.62rem;font-weight:700;letter-spacing:.12em;color:var(--tx3);text-transform:uppercase}
+
+/* ===== SECTION LAYOUT ===== */
+.ciclos-section,.stats-section,.sobre-section{padding:56px 48px;position:relative}
+.ciclos-section{background:var(--bg)}
+.stats-section{background:var(--bg1)}
+.sobre-section{background:var(--bg1)}
+
+/* Section header */
+.section-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;flex-wrap:wrap;gap:20px;padding-bottom:16px;border-bottom:1px solid var(--bdr)}
+.section-tag{display:inline-block;font-family:var(--fh);font-size:.62rem;font-weight:700;letter-spacing:.18em;color:var(--gold);border:1px solid var(--goldbdr2);padding:4px 13px;border-radius:2px;margin-bottom:8px;text-transform:uppercase}
+.section-title{font-family:var(--fd);font-size:clamp(1.8rem,3.5vw,2.8rem);letter-spacing:.08em;line-height:1;margin-bottom:8px;text-transform:uppercase;background:linear-gradient(160deg,var(--goldl) 0%,var(--gold) 60%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.section-subtitle{font-family:var(--fh);font-size:.78rem;color:var(--tx3);font-weight:600;letter-spacing:.06em}
+
+/* Filter bar */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap}
+.filter-btn{padding:7px 16px;border-radius:20px;font-family:var(--fh);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3);border:1px solid var(--bdr2);transition:var(--transition)}
+.filter-btn:hover,.filter-btn.active{background:#c9a84c12;border-color:var(--goldbdr2);color:var(--gold)}
+
+/* ===== CICLOS — GRID COMPACTO (estilo screenshot) ===== */
+.ciclos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:12px}
+
+.wcard{
+  background:var(--bg1);border:1px solid var(--bdr);
+  border-top:2px solid transparent;border-radius:var(--r);
+  padding:14px 8px 12px;cursor:pointer;text-align:center;
+  transition:var(--transition);position:relative;overflow:hidden;
+  user-select:none;
+}
+.wcard::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#c9a84c06,transparent);opacity:0;transition:.22s}
+.wcard:hover{border-top-color:var(--gold);box-shadow:0 4px 24px var(--goldglow);transform:translateY(-3px)}
+.wcard:hover::before{opacity:1}
+.wcard.done-full{border-top-color:var(--grnl);background:#0a170e}
+.wcard.active-card{border-top-color:var(--goldl);box-shadow:0 0 0 2px var(--goldbdr2),0 4px 24px var(--goldglow)}
+
+.wnum{font-family:var(--fd);font-size:2.2rem;line-height:1;background:linear-gradient(160deg,var(--goldl),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.wcard.done-full .wnum{background:linear-gradient(160deg,var(--grnl),var(--grn));-webkit-background-clip:text}
+.wlabel{font-family:var(--fh);font-size:.65rem;font-weight:700;text-transform:uppercase;color:var(--tx2);margin-top:2px;letter-spacing:.08em}
+.wfase{font-family:var(--fh);font-size:.56rem;color:var(--tx3);margin-top:1px;letter-spacing:.04em}
+.wminibar{width:100%;height:6px;background:var(--bdr2);border-radius:10px;margin-top:10px;overflow:hidden;position:relative}
+.wminifill{height:100%;background:linear-gradient(90deg,var(--goldd),var(--goldl));transition:width .5s cubic-bezier(.4,0,.2,1);border-radius:10px;position:relative}
+.wminifill::after{content:'';position:absolute;top:0;right:0;width:16px;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3));border-radius:10px}
+.wcard.done-full .wminifill{background:linear-gradient(90deg,var(--grn),var(--grnl))}
+.wcount{font-family:var(--fh);font-size:.6rem;color:var(--tx3);margin-top:5px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.wcount .wpct{font-size:.62rem;font-weight:800;color:var(--gold)}
+.wcard.done-full .wcount .wpct{color:var(--grnl)}
+
+/* ===== PAINEL DE DETALHES DO CICLO ===== */
+.ciclo-painel{
+  display:none;margin-top:16px;
+  background:var(--bg1);border:1px solid var(--goldbdr2);
+  border-radius:var(--r);overflow:hidden;
+  animation:painelIn .28s ease;
+}
+.ciclo-painel.open{display:block}
+@keyframes painelIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+
+.painel-header{
+  background:linear-gradient(135deg,#0d0d20,#12122a);
+  padding:16px 20px;display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid var(--bdr);
+}
+.painel-titulo{font-family:var(--fd);font-size:1.1rem;color:var(--gold);letter-spacing:.1em}
+.painel-meta{display:flex;align-items:center;gap:12px}
+.painel-badge{font-family:var(--fh);font-size:.62rem;font-weight:700;letter-spacing:.1em;padding:3px 10px;border-radius:2px;text-transform:uppercase}
+.painel-badge.pending{background:#c9a84c12;color:var(--gold);border:1px solid var(--goldbdr)}
+.painel-badge.done{background:#16a34a18;color:var(--grnl);border:1px solid #22c55e30}
+.painel-close{font-family:var(--fh);font-size:.8rem;font-weight:700;color:var(--tx3);cursor:pointer;padding:4px 8px;border-radius:4px;transition:var(--transition);border:1px solid var(--bdr2)}
+.painel-close:hover{color:var(--gold);border-color:var(--goldbdr)}
+
+.painel-body{padding:18px 20px}
+
+/* Painel progress bar */
+.painel-prog{margin-bottom:18px}
+.painel-prog-track{height:4px;background:var(--bdr2);border-radius:10px;overflow:hidden;margin-bottom:6px}
+.painel-prog-fill{height:100%;background:linear-gradient(90deg,var(--goldd),var(--goldl));border-radius:10px;transition:width .5s ease}
+.painel-prog-txt{font-family:var(--fh);font-size:.65rem;font-weight:700;color:var(--tx3);display:flex;justify-content:space-between}
+
+/* Dias */
+.dia-block{border:1px solid var(--bdr);border-radius:var(--rsm);padding:12px 14px;margin-bottom:8px;background:var(--bg2);transition:var(--transition)}
+.dia-block:last-child{margin-bottom:0}
+.dia-block.dia-done{opacity:.42;background:#0a160d;border-color:#22c55e18}
+.dia-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px;gap:8px}
+.dia-title{font-family:var(--fh);font-size:.78rem;font-weight:700;color:var(--tx);line-height:1.3;flex:1;text-transform:uppercase}
+.dia-title .mat-name{color:var(--goldl)}
+.dia-title .dia-num{color:var(--tx3);font-size:.62rem;display:block;margin-bottom:2px;font-weight:600}
+
+/* Checkbox */
+.dia-chk-wrap{display:flex;align-items:center;cursor:pointer;flex-shrink:0;padding-top:2px}
+.dia-chk{display:none}
+.dia-chk-box{width:18px;height:18px;border-radius:4px;border:2px solid var(--bdr2);background:transparent;display:flex;align-items:center;justify-content:center;transition:var(--transition);flex-shrink:0;position:relative}
+.dia-chk:checked+.dia-chk-box{background:var(--grn);border-color:var(--grnl)}
+.dia-chk:checked+.dia-chk-box::after{content:'✓';position:absolute;color:#fff;font-size:.55rem;font-weight:800;font-family:var(--fb)}
+
+/* Tópicos */
+.topicos-list{display:flex;flex-direction:column;gap:4px}
+.topico-item{display:flex;align-items:center;gap:7px;padding:5px 0;border-bottom:1px solid var(--bdr)}
+.topico-item:last-child{border-bottom:none}
+.topico-num{width:17px;height:17px;border-radius:50%;background:#c9a84c14;border:1px solid var(--goldbdr);color:var(--gold);font-family:var(--fh);font-size:.6rem;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.topico-nome{flex:1;font-family:var(--fb);font-size:.72rem;color:var(--tx2);font-weight:500;line-height:1.3}
+.topico-q{font-family:var(--fh);font-size:.68rem;font-weight:800;color:var(--gold);white-space:nowrap;flex-shrink:0}
+.topico-link{display:inline-flex;align-items:center;gap:3px;background:#c9a84c12;border:1px solid var(--goldbdr);color:var(--goldl);font-family:var(--fh);font-size:.6rem;font-weight:700;letter-spacing:.06em;padding:3px 8px;border-radius:4px;white-space:nowrap;transition:var(--transition);flex-shrink:0}
+.topico-link:hover{background:var(--gold);color:#07070c}
+
+/* Extra questões */
+.topico-extra{display:flex;align-items:center;gap:5px;margin-top:6px;padding-top:6px;border-top:1px dashed var(--bdr2)}
+.extra-label{font-family:var(--fh);font-size:.6rem;font-weight:700;color:var(--tx3);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.extra-input{width:64px;background:var(--bg3);border:1px solid var(--bdr2);border-radius:4px;color:var(--goldl);font-family:var(--fh);font-size:.78rem;font-weight:700;text-align:center;padding:4px 6px;transition:var(--transition);outline:none}
+.extra-input:focus{border-color:var(--goldbdr2);box-shadow:0 0 0 2px var(--goldglow)}
+.extra-input::-webkit-inner-spin-button,.extra-input::-webkit-outer-spin-button{opacity:1}
+.extra-total{font-family:var(--fh);font-size:.65rem;font-weight:700;color:var(--goldl);white-space:nowrap}
+.extra-saved{font-family:var(--fh);font-size:.6rem;color:var(--grnl);animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* Acertos / Erros por dia */
+.ae-row{display:flex;align-items:center;gap:8px;margin-top:8px;padding:8px 10px;background:var(--bg3);border-radius:var(--rsm);border:1px solid var(--bdr2);flex-wrap:wrap}
+.ae-group{display:flex;align-items:center;gap:6px;flex:1;min-width:90px}
+.ae-label{font-family:var(--fh);font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap}
+.ae-label.acerto{color:var(--grnl)}
+.ae-label.erro{color:#f87171}
+.ae-input{width:56px;background:var(--bg1);border:1px solid var(--bdr2);border-radius:4px;font-family:var(--fh);font-size:.78rem;font-weight:700;text-align:center;padding:4px 6px;outline:none;transition:var(--transition)}
+.ae-input.acerto{color:var(--grnl)}
+.ae-input.acerto:focus{border-color:var(--grnl);box-shadow:0 0 0 2px rgba(34,197,94,0.15)}
+.ae-input.erro{color:#f87171}
+.ae-input.erro:focus{border-color:#f87171;box-shadow:0 0 0 2px rgba(239,68,68,0.15)}
+.ae-input::-webkit-inner-spin-button,.ae-input::-webkit-outer-spin-button{opacity:1}
+.ae-taxa{font-family:var(--fh);font-size:.65rem;font-weight:800;color:var(--goldl);white-space:nowrap;margin-left:auto}
+.ae-saved{font-family:var(--fh);font-size:.58rem;color:var(--grnl);min-width:10px}
+.painel-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;padding-top:16px;border-top:1px solid var(--bdr)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;padding:8px 14px;border-radius:var(--rsm);font-family:var(--fh);font-weight:700;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:none;transition:var(--transition);flex:1;min-width:100px;text-align:center}
+.btn-gold{background:linear-gradient(135deg,var(--goldd),var(--gold),var(--goldl));color:#07070c;box-shadow:0 0 12px #c9a84c20}
+.btn-gold:hover{box-shadow:0 0 22px #c9a84c40;transform:translateY(-1px)}
+.btn-out{background:transparent;border:1px solid var(--bdr2);color:var(--tx2)}
+.btn-out:hover{border-color:var(--goldbdr2);color:var(--gold)}
+.btn-grn{background:var(--grn);color:#fff}
+.btn-grn:hover{background:#15803d}
+.btn-grn.undo{background:transparent;border:1px solid var(--grnl);color:var(--grnl)}
+.btn-grn.undo:hover{background:#16a34a18}
+.btn-red{background:transparent;border:1px solid #ef444440;color:#f87171}
+.btn-red:hover{background:#ef444418;border-color:#f87171}
+
+/* ===== STATS ===== */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:24px}
+.stat-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r);padding:20px 16px;text-align:center;position:relative;overflow:hidden;transition:var(--transition)}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.stat-card:hover{transform:translateY(-2px);border-color:var(--goldbdr2);box-shadow:0 4px 20px var(--goldglow)}
+.stat-icon{font-size:26px;margin-bottom:10px}
+.stat-number{font-family:var(--fd);font-size:2.6rem;color:var(--gold);line-height:1;margin-bottom:6px}
+.stat-name{font-family:var(--fh);font-size:.62rem;font-weight:700;letter-spacing:.1em;color:var(--tx3);text-transform:uppercase}
+.stat-bar-wrap{margin-top:12px;height:3px;background:var(--bdr2);border-radius:4px;overflow:hidden}
+.stat-bar-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--goldd),var(--goldl));border-radius:4px;transition:width 1s ease}
+
+/* Discipline bars */
+.discipline-stats{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r);padding:22px 24px}
+.ds-title{font-family:var(--fh);font-size:1rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.discipline-row{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.discipline-row:last-child{margin-bottom:0}
+.disc-name{width:190px;font-family:var(--fh);font-size:.72rem;font-weight:700;color:var(--tx2);flex-shrink:0;text-transform:uppercase;letter-spacing:.04em}
+.disc-track{flex:1;height:6px;background:var(--bdr2);border-radius:6px;overflow:hidden}
+.disc-fill{height:100%;background:linear-gradient(90deg,var(--goldd),var(--gold));border-radius:6px;transition:width .8s ease}
+.disc-pct{width:40px;font-family:var(--fh);font-size:.8rem;font-weight:800;color:var(--gold);text-align:right;flex-shrink:0}
+
+/* ===== SIMULADOS ===== */
+
+/* ===== GRÁFICO PIZZA ESTATÍSTICAS ===== */
+.pizza-section{margin-top:28px}
+.pizza-section-title{font-family:var(--fh);font-size:1rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.pizza-section-title::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--goldbdr),transparent)}
+
+/* Tabs de seleção ciclo/dia */
+.pizza-tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.pizza-tab{padding:7px 16px;border-radius:20px;font-family:var(--fh);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3);border:1px solid var(--bdr2);cursor:pointer;transition:var(--transition);background:transparent}
+.pizza-tab:hover{border-color:var(--goldbdr2);color:var(--gold)}
+.pizza-tab.active{background:#c9a84c12;border-color:var(--goldbdr2);color:var(--gold)}
+
+/* Selector ciclo */
+.pizza-selector{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;align-items:center}
+.pizza-selector-label{font-family:var(--fh);font-size:.65rem;font-weight:700;letter-spacing:.1em;color:var(--tx3);text-transform:uppercase;margin-right:4px;white-space:nowrap}
+.pizza-sel-btn{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:.7rem;font-weight:800;border:1px solid var(--bdr2);color:var(--tx3);cursor:pointer;transition:var(--transition);background:var(--bg2);flex-shrink:0}
+.pizza-sel-btn:hover{border-color:var(--goldbdr2);color:var(--gold);background:#c9a84c0d}
+.pizza-sel-btn.active{border-color:var(--gold);color:var(--gold);background:#c9a84c18;box-shadow:0 0 0 2px var(--goldbdr)}
+.pizza-sel-btn.done{border-color:var(--grnl);color:var(--grnl);background:#0a170e}
+.pizza-sel-btn.has-data{border-color:var(--goldbdr2)}
+
+/* Container dos gráficos */
+.pizza-charts-wrap{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r);padding:22px 24px;min-height:220px}
+.pizza-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:160px;color:var(--tx3);font-family:var(--fh);font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;text-align:center;gap:12px}
+.pizza-empty span{font-size:2rem}
+
+/* Gráfico geral (único pizza grande) */
+.pizza-global-wrap{display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.pizza-canvas-box{position:relative;flex-shrink:0}
+.pizza-canvas-box canvas{display:block}
+.pizza-center-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
+.pizza-center-pct{font-family:var(--fd);font-size:1.8rem;color:var(--grnl);line-height:1}
+.pizza-center-sub{font-family:var(--fh);font-size:.55rem;font-weight:700;letter-spacing:.1em;color:var(--tx3);text-transform:uppercase;margin-top:3px}
+.pizza-legend{display:flex;flex-direction:column;gap:10px;flex:1;min-width:160px}
+.pizza-legend-item{display:flex;align-items:center;gap:10px}
+.pizza-legend-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.pizza-legend-info{display:flex;flex-direction:column;gap:1px}
+.pizza-legend-name{font-family:var(--fh);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--tx2)}
+.pizza-legend-val{font-family:var(--fd);font-size:.9rem;color:var(--gold)}
+
+/* Ciclo: lista de dias com pizza mini */
+.pizza-ciclo-header{font-family:var(--fh);font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--bdr)}
+.pizza-dias-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.pizza-dia-card{background:var(--bg3);border:1px solid var(--bdr2);border-radius:var(--rsm);padding:12px 14px;display:flex;align-items:center;gap:12px;transition:var(--transition)}
+.pizza-dia-card:hover{border-color:var(--goldbdr)}
+.pizza-dia-card.no-data{opacity:.4}
+.pizza-dia-mini{flex-shrink:0}
+.pizza-dia-info{flex:1;min-width:0}
+.pizza-dia-num{font-family:var(--fh);font-size:.62rem;font-weight:700;color:var(--tx3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+.pizza-dia-mat{font-family:var(--fh);font-size:.68rem;font-weight:700;color:var(--goldl);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:4px}
+.pizza-dia-stats{display:flex;gap:10px}
+.pizza-dia-ac{font-family:var(--fh);font-size:.65rem;font-weight:800;color:var(--grnl)}
+.pizza-dia-er{font-family:var(--fh);font-size:.65rem;font-weight:800;color:#f87171}
+.pizza-dia-taxa{font-family:var(--fd);font-size:.9rem;color:var(--gold);margin-left:auto;flex-shrink:0}
+.pizza-dia-nodata{font-family:var(--fh);font-size:.6rem;color:var(--tx3);text-transform:uppercase;letter-spacing:.06em}
+
+@media(max-width:768px){
+  .pizza-global-wrap{gap:20px}
+  .pizza-dias-list{grid-template-columns:1fr}
+}
+@media(max-width:430px){
+  .pizza-sel-btn{width:30px;height:30px;font-size:.62rem}
+  .pizza-charts-wrap{padding:14px}
+  .pizza-dia-card{padding:10px}
+}
+
+/* ===== SOBRE ===== */
+.sobre-content{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+.sobre-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:var(--r);padding:22px 20px;transition:var(--transition)}
+.sobre-card:hover{border-color:var(--goldbdr2);transform:translateY(-2px)}
+.sobre-card h3{font-family:var(--fh);font-size:1rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);margin-bottom:10px}
+.sobre-card p{font-family:var(--fb);font-size:.78rem;color:var(--tx3);line-height:1.7}
+.sobre-actions{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+
+/* ===== TOAST ===== */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(70px);background:var(--bg2);color:var(--gold);font-family:var(--fh);font-size:.8rem;font-weight:700;padding:11px 24px;border-radius:var(--rsm);border:1px solid var(--goldbdr2);box-shadow:0 8px 32px #0009;z-index:9999;opacity:0;transition:all .35s cubic-bezier(0.4,0,0.2,1);pointer-events:none;white-space:nowrap}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+/* ===== MODAL ===== */
+#modalWrap{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9998;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.modal-box{background:var(--bg1);border:1px solid var(--goldbdr2);border-radius:var(--r);padding:30px 28px;max-width:340px;width:90%;text-align:center}
+.modal-box h3{font-family:var(--fh);font-size:1.2rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.modal-box p{font-family:var(--fb);font-size:.78rem;color:var(--tx2);line-height:1.5;margin-bottom:4px}
+.modal-actions{display:flex;gap:10px;justify-content:center;margin-top:20px}
+
+/* ===== RESPONSIVE — iPhone 13 Pro Max (428px) + demais ===== */
+
+/* --- Tablet / telas < 1024px: esconde sidebar, mostra topbar --- */
+@media(max-width:1024px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0);box-shadow:4px 0 32px rgba(0,0,0,0.7)}
+  .mobile-topbar{display:flex}
+  .main-content{margin-left:0;padding-top:56px}
+  .hero-header,.ciclos-section,.stats-section,.sobre-section{padding:32px 20px}
+  .ciclos-grid{grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px}
+}
+
+/* --- Mobile geral < 768px --- */
+@media(max-width:768px){
+  .hero-header,.ciclos-section,.stats-section,.sobre-section{padding:28px 16px}
+  .hero-content{flex-direction:column;text-align:center;gap:16px}
+  .hero-svg{width:72px;height:72px}
+  .hero-dec{margin:10px auto}
+  .hero-title .line1{font-size:clamp(2.2rem,12vw,3.5rem)}
+  .hero-title .line2{font-size:clamp(1rem,5vw,1.6rem)}
+  .hero-title .line3{font-size:clamp(2.2rem,12vw,3.5rem)}
+  .frase-section{padding:16px 20px}
+  .frase-txt{font-size:1rem}
+  .global-progress-section{padding:16px}
+  .progress-percent{font-size:1.5rem}
+  .progress-stats-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;width:100%}
+  .pstat{text-align:center}
+  .pstat-val{font-size:1.4rem}
+  .ciclos-grid{grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px}
+  .section-header{flex-direction:column;align-items:flex-start;gap:12px}
+  .section-title{font-size:1.8rem}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .stat-number{font-size:2rem}
+  .discipline-row{gap:8px}
+  .disc-name{width:110px;font-size:.65rem}
+  .disc-pct{width:32px;font-size:.7rem}
+  .sobre-content{grid-template-columns:1fr}
+  .painel-header{flex-direction:column;align-items:flex-start;gap:8px}
+  .painel-meta{width:100%;justify-content:space-between}
+  .topico-item{flex-wrap:wrap;gap:5px}
+  .topico-nome{width:100%;flex:unset;order:2}
+  .topico-num{order:1}
+  .topico-q{order:3}
+  .topico-link{order:4}
+  .toast{left:12px;right:12px;bottom:12px;white-space:normal;transform:translateY(80px);text-align:center}
+  .toast.show{transform:translateY(0)}
+  .modal-box{padding:22px 18px}
+}
+
+/* --- iPhone 13 Pro Max e similares (428px) --- */
+@media(max-width:430px){
+  /* Viewport & safe areas */
+  .mobile-topbar{
+    height:52px;
+    padding-left:max(14px, env(safe-area-inset-left));
+    padding-right:max(14px, env(safe-area-inset-right));
+    padding-top:env(safe-area-inset-top);
+  }
+  .main-content{padding-top:calc(52px + env(safe-area-inset-top,0px))}
+  .hero-header,.ciclos-section,.stats-section,.sobre-section{
+    padding:22px max(14px, env(safe-area-inset-left)) 22px max(14px, env(safe-area-inset-right));
+    padding-bottom:calc(22px + env(safe-area-inset-bottom,0px));
+  }
+
+  /* Sidebar full-width no mobile */
+  .sidebar{width:min(280px,88vw)}
+
+  /* Hero */
+  .hero-content{gap:12px}
+  .hero-svg{width:60px;height:60px}
+  .hero-pretitle{font-size:.6rem;letter-spacing:.12em}
+  .hero-title .line1{font-size:2.4rem}
+  .hero-title .line2{font-size:1.1rem}
+  .hero-title .line3{font-size:2.5rem}
+  .hero-sub{font-size:.68rem}
+  .hero-dec{width:120px}
+  .frase-section{padding:14px 16px}
+  .frase-txt{font-size:.92rem}
+  .frase-tag{font-size:.56rem}
+  .global-progress-section{padding:14px}
+  .progress-stats-row{grid-template-columns:repeat(2,1fr);gap:8px}
+  .pstat-val{font-size:1.3rem}
+  .pstat-lbl{font-size:.56rem}
+
+  /* Ciclos grid — 3 por linha no iPhone */
+  .ciclos-grid{grid-template-columns:repeat(3,1fr);gap:7px}
+  .wcard{padding:11px 6px 10px}
+  .wnum{font-size:1.7rem}
+  .wlabel{font-size:.58rem}
+  .wfase{font-size:.5rem}
+  .wcount{font-size:.55rem}
+  .wpct{font-size:.55rem}
+  .wminibar{height:5px;margin-top:7px}
+
+  /* Painel detalhes */
+  .painel-header{padding:12px 14px}
+  .painel-titulo{font-size:.9rem}
+  .painel-body{padding:14px}
+  .painel-prog{margin-bottom:14px}
+  .dia-block{padding:10px 12px;margin-bottom:6px}
+  .dia-title{font-size:.72rem}
+  .dia-title .dia-num{font-size:.58rem}
+  .topico-item{padding:6px 0}
+  .topico-num{width:15px;height:15px;font-size:.55rem}
+  .topico-nome{font-size:.68rem}
+  .topico-q{font-size:.62rem}
+  .topico-link{font-size:.58rem;padding:3px 7px}
+  .extra-input{width:56px;font-size:.72rem;padding:3px 5px}
+  .extra-label{font-size:.56rem}
+
+  /* Section */
+  .section-tag{font-size:.56rem;padding:3px 10px}
+  .section-title{font-size:1.6rem}
+  .section-subtitle{font-size:.7rem}
+  .filter-btn{font-size:.62rem;padding:6px 12px}
+
+  /* Stats */
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:8px}
+  .stat-card{padding:16px 12px}
+  .stat-icon{font-size:20px;margin-bottom:7px}
+  .stat-number{font-size:1.8rem}
+  .stat-name{font-size:.56rem}
+  .discipline-stats{padding:16px}
+  .disc-name{width:100px;font-size:.6rem}
+  .disc-pct{font-size:.65rem;width:28px}
+
+  /* Sobre */
+  .sobre-card{padding:16px 14px}
+  .sobre-card h3{font-size:.88rem}
+  .sobre-card p{font-size:.74rem}
+  .sobre-actions{gap:8px}
+
+  /* Buttons */
+  .painel-actions{flex-direction:column;gap:7px}
+  .btn{width:100%;min-width:unset;padding:10px 14px;font-size:.68rem}
+  .sobre-actions .btn{flex:1}
+
+  /* Toast */
+  .toast{
+    left:max(12px,env(safe-area-inset-left));
+    right:max(12px,env(safe-area-inset-right));
+    bottom:calc(16px + env(safe-area-inset-bottom,0px));
+    font-size:.74rem;
+  }
+
+  /* Modal */
+  .modal-box{width:calc(100vw - 28px);max-width:unset;padding:20px 16px}
+  .modal-box h3{font-size:1rem}
+  .modal-actions{gap:8px}
+  .modal-actions .btn{flex:1}
+
+  /* Sidebar footer safe area */
+  .sidebar-footer{
+    padding-bottom:calc(18px + env(safe-area-inset-bottom,0px));
+  }
+}
+
+/* --- Telas muito pequenas < 360px --- */
+@media(max-width:360px){
+  .ciclos-grid{grid-template-columns:repeat(3,1fr);gap:5px}
+  .wnum{font-size:1.5rem}
+  .hero-title .line1{font-size:2rem}
+  .hero-title .line3{font-size:2.1rem}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-logo">
+    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" class="emblem-svg">
+      <polygon points="40,4 76,28 76,52 40,76 4,52 4,28" fill="none" stroke="#c9a84c" stroke-width="2.5"/>
+      <polygon points="40,12 68,30 68,50 40,68 12,50 12,30" fill="none" stroke="#c9a84c" stroke-width="1.2" opacity="0.5"/>
+      <circle cx="40" cy="40" r="16" fill="none" stroke="#c9a84c" stroke-width="2"/>
+      <text x="40" y="46" text-anchor="middle" fill="#c9a84c" font-family="Barlow Condensed" font-size="13" font-weight="700">PM</text>
+      <path d="M40 12 L40 24 M40 56 L40 68 M12 40 L24 40 M56 40 L68 40" stroke="#c9a84c" stroke-width="1" opacity="0.7"/>
+      <circle cx="40" cy="40" r="3" fill="#c9a84c"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-main">CPPEM</span>
+      <span class="logo-sub">PMPE 2026</span>
+    </div>
+  </div>
+
+  <div class="sidebar-prog">
+    <div class="sp-label">Progresso Geral</div>
+    <div class="sp-track"><div class="sp-fill" id="sbFill"></div></div>
+    <div class="sp-pct" id="sbPct">0%</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a href="#inicio"       class="nav-item active" data-section="inicio">      <span class="nav-icon">⌂</span> Início</a>
+    <a href="#ciclos"       class="nav-item"         data-section="ciclos">      <span class="nav-icon">🎯</span> Ciclos</a>
+    <a href="#estatisticas" class="nav-item"         data-section="estatisticas"><span class="nav-icon">📊</span> Estatísticas</a>
+    <a href="#sobre"        class="nav-item"         data-section="sobre">       <span class="nav-icon">ℹ</span> Sobre</a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-motto">"A disciplina de hoje é a farda de amanhã."</div>
+  </div>
+</aside>
+
+<!-- MOBILE TOPBAR -->
+<header class="mobile-topbar">
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="mobile-logo">
+    <svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" width="26" height="26">
+      <polygon points="20,2 38,14 38,26 20,38 2,26 2,14" fill="none" stroke="#c9a84c" stroke-width="2"/>
+      <circle cx="20" cy="20" r="8" fill="none" stroke="#c9a84c" stroke-width="1.5"/>
+      <text x="20" y="24" text-anchor="middle" fill="#c9a84c" font-family="Barlow Condensed" font-size="7" font-weight="700">PM</text>
+    </svg>
+    60 DIAS PMPE
+  </div>
+  <div class="mobile-pct" id="mobilePct">0%</div>
+</header>
+
+<div class="overlay" id="overlay"></div>
+
+<main class="main-content">
+
+  <!-- HERO / INÍCIO -->
+  <section class="hero-header" id="inicio">
+    <div class="hero-bg-pattern"></div>
+    <div class="hero-content">
+      <div class="hero-emblem">
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" class="hero-svg">
+          <polygon points="60,6 114,42 114,78 60,114 6,78 6,42" fill="none" stroke="#c9a84c" stroke-width="2"/>
+          <polygon points="60,16 104,46 104,74 60,104 16,74 16,46" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+          <circle cx="60" cy="60" r="28" fill="none" stroke="#c9a84c" stroke-width="2"/>
+          <circle cx="60" cy="60" r="20" fill="rgba(201,168,76,0.07)"/>
+          <text x="60" y="56" text-anchor="middle" fill="#c9a84c" font-family="Bebas Neue" font-size="15" font-weight="700">PMPE</text>
+          <text x="60" y="72" text-anchor="middle" fill="#c9a84c" font-family="Barlow Condensed" font-size="7" font-weight="600" letter-spacing="3">PERNAMBUCO</text>
+          <path d="M60 6 L60 16 M60 104 L60 114 M6 60 L16 60 M104 60 L114 60" stroke="#c9a84c" stroke-width="1.5" opacity="0.5"/>
+          <circle cx="60" cy="6" r="2" fill="#c9a84c"/>
+          <circle cx="114" cy="42" r="2" fill="#c9a84c"/>
+          <circle cx="114" cy="78" r="2" fill="#c9a84c"/>
+          <circle cx="60" cy="114" r="2" fill="#c9a84c"/>
+          <circle cx="6" cy="78" r="2" fill="#c9a84c"/>
+          <circle cx="6" cy="42" r="2" fill="#c9a84c"/>
+        </svg>
+      </div>
+      <div class="hero-text">
+        <div class="hero-pretitle">Polícia Militar de Pernambuco · CPPEM</div>
+        <h1 class="hero-title">
+          <span class="line2">60 Dias de</span>
+          <span class="line3">Questões</span>
+          <span class="line1">PMPE</span>
+        </h1>
+        <div class="hero-dec"></div>
+        <p class="hero-sub">10 Ciclos · 30+ Questões/Dia · Resolução Ativa</p>
+      </div>
+    </div>
+
+    <!-- Frase motivacional -->
+    <div class="frase-section">
+      <div class="frase-txt" id="fraseMotiv">A aprovação não é sorte — é consequência.</div>
+      <div class="frase-tag">CPPEM · Motivação Diária</div>
+    </div>
+
+    <!-- Progresso global -->
+    <div class="global-progress-section">
+      <div class="progress-header">
+        <span class="progress-label">Progresso Geral — 60 Dias</span>
+        <span class="progress-percent" id="globalPct">0%</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="globalBar"></div></div>
+      <div class="progress-stats-row">
+        <div class="pstat"><span class="pstat-val" id="statDone">0</span><span class="pstat-lbl">Dias Concluídos</span></div>
+        <div class="pstat"><span class="pstat-val" id="statTotal">60</span><span class="pstat-lbl">Total de Dias</span></div>
+        <div class="pstat"><span class="pstat-val" id="statQ">0</span><span class="pstat-lbl">Questões Feitas</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CICLOS -->
+  <section class="ciclos-section" id="ciclos">
+    <div class="section-header">
+      <div>
+        <span class="section-tag">Operacional</span>
+        <h2 class="section-title">Ciclos de Estudo</h2>
+        <p class="section-subtitle">Clique num ciclo para ver os dias e resolver as questões</p>
+      </div>
+      <div class="filter-bar">
+        <button class="filter-btn active" onclick="setFiltro('todos',this)">Todos</button>
+        <button class="filter-btn" onclick="setFiltro('pendentes',this)">Pendentes</button>
+        <button class="filter-btn" onclick="setFiltro('concluidos',this)">Concluídos</button>
+      </div>
+    </div>
+    <div class="ciclos-grid" id="ciclosGrid"></div>
+    <div class="ciclo-painel" id="cicloPainel"></div>
+  </section>
+
+  <!-- ESTATÍSTICAS -->
+  <section class="stats-section" id="estatisticas">
+    <div class="section-header">
+      <div>
+        <span class="section-tag">Análise</span>
+        <h2 class="section-title">Estatísticas</h2>
+        <p class="section-subtitle">Monitore seu desempenho e evolução no cronograma</p>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-icon">📅</div><div class="stat-number" id="sDias">0</div><div class="stat-name">Dias Concluídos</div><div class="stat-bar-wrap"><div class="stat-bar-fill" id="sBarDias"></div></div></div>
+      <div class="stat-card"><div class="stat-icon">📝</div><div class="stat-number" id="sQuestoes">0</div><div class="stat-name">Questões Obrigatórias</div></div>
+
+      <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-number" id="sAcertos" style="color:var(--grnl)">0</div><div class="stat-name">Total de Acertos</div></div>
+      <div class="stat-card"><div class="stat-icon">❌</div><div class="stat-number" id="sErros" style="color:#f87171">0</div><div class="stat-name">Total de Erros</div></div>
+      <div class="stat-card"><div class="stat-icon">🎯</div><div class="stat-number" id="sTaxa">—</div><div class="stat-name">Taxa de Acertos</div><div class="stat-bar-wrap"><div class="stat-bar-fill" id="sBarAcertos" style="background:linear-gradient(90deg,var(--grn),var(--grnl))"></div></div></div>
+      <div class="stat-card"><div class="stat-icon">📈</div><div class="stat-number" id="sPct">0%</div><div class="stat-name">Progresso Geral</div></div>
+
+      <div class="stat-card"><div class="stat-icon">📅</div><div class="stat-number" id="sRestantes">60</div><div class="stat-name">Dias Restantes</div></div>
+    </div>
+    <div class="discipline-stats">
+      <div class="ds-title">Progresso por Matéria</div>
+      <div id="disciplineBars"></div>
+    </div>
+
+    <!-- ===== ESTATÍSTICAS PIZZA ===== -->
+    <div class="pizza-section">
+      <div class="pizza-section-title">📊 Desempenho por Questões</div>
+      <div class="pizza-tabs">
+        <button class="pizza-tab active" onclick="pizzaSetModo('geral',this)">🌐 Geral</button>
+        <button class="pizza-tab" onclick="pizzaSetModo('ciclo',this)">🔄 Por Ciclo</button>
+        <button class="pizza-tab" onclick="pizzaSetModo('dia',this)">📅 Por Dia</button>
+      </div>
+      <div class="pizza-selector" id="pizzaSelectorCiclo" style="display:none">
+        <span class="pizza-selector-label">Ciclo:</span>
+        <div id="pizzaBtnsCiclo" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+      </div>
+      <div class="pizza-selector" id="pizzaSelectorDia" style="display:none">
+        <span class="pizza-selector-label">Dia:</span>
+        <div id="pizzaBtnsDia" style="display:flex;gap:6px;flex-wrap:wrap"></div>
+      </div>
+      <div class="pizza-charts-wrap" id="pizzaChartsWrap">
+        <div class="pizza-empty"><span>🍕</span>Nenhum dado ainda.<br>Registre acertos e erros nos dias para ver as estatísticas.</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SOBRE -->
+  <section class="sobre-section" id="sobre">
+    <div class="section-header">
+      <div>
+        <span class="section-tag">Informações</span>
+        <h2 class="section-title">Sobre o Plano</h2>
+      </div>
+    </div>
+    <div class="sobre-content">
+      <div class="sobre-card"><h3>🎯 Objetivo</h3><p>Plano estratégico de 60 dias com resolução intensiva de questões para o concurso da Polícia Militar de Pernambuco 2026. Cronograma baseado no edital oficial e na banca AOCP.</p></div>
+      <div class="sobre-card"><h3>🔗 QConcursos</h3><p>Todos os tópicos têm links diretos para questões filtradas no QConcursos. Clique nos botões 🔗 de cada tópico para resolver imediatamente.</p></div>
+      <div class="sobre-card"><h3>📋 Metodologia</h3><p>Cada dia cobre 1 matéria com 3 tópicos estratégicos. 30 a 35 questões/dia. Resolva, corrija imediatamente e anote os erros. Marque o dia como concluído.</p></div>
+    </div>
+    <div class="sobre-actions">
+      <button class="btn btn-gold" onclick="exportarJSON()">💾 Exportar Progresso</button>
+      <button class="btn btn-red" onclick="confirmarLimpar()">🗑 Limpar Progresso</button>
+    </div>
+  </section>
+
+</main>
+
+<div class="toast" id="toast"></div>
+<div id="modalWrap"></div>
+
+<script>
+// ===== FRASES =====
+const FRASES=["A aprovação não é sorte — é consequência.","Cada questão resolvida é um passo na farda.","Disciplina hoje, farda amanhã.","Quem resolve mais, passa mais.","Não espere a motivação. Crie o hábito.","A concorrência descansa. Você não.","Foque no processo: 30+ questões/dia.","Seu futuro como PM-PE começa aqui.","Consistência supera intensidade.","Cada erro revisado é um ponto garantido."];
+let fraseIdx=0;
+function rotacionarFrase(){
+  const el=document.getElementById('fraseMotiv'); if(!el)return;
+  el.classList.add('out');
+  setTimeout(()=>{ el.textContent=FRASES[fraseIdx%FRASES.length]; fraseIdx++; el.classList.remove('out'); },400);
+}
+setTimeout(()=>{ setInterval(rotacionarFrase,7000); },5000);
+
+// ===== LINKS =====
+const linkMap={
+  "Compreensão e interpretação de textos":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/letras-portugues/nocoes-gerais-de-compreensao-e-interpretacao-de-texto/questoes",
+  "Tipologias e gêneros textuais":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/letras-portugues/tipologia-textual/questoes",
+  "Ortografia oficial":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/letras-portugues/ortografia/questoes",
+  "Acentuação gráfica":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/letras-portugues/acentuacao-grafica/questoes",
+  "Emprego das classes de palavras":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/letras-portugues/emprego-das-classes-de-palavras/questoes",
+  "Crase":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/letras-portugues/emprego-do-sinal-indicativo-de-crase/questoes",
+  "Sintaxe da oração e período":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/letras-portugues/sintaxe/questoes",
+  "Mecanismos de coesão textual":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/letras-portugues/coesao-e-coerencia/questoes",
+  "Pontuação":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/letras-portugues/pontuacao/questoes",
+  "Concordância nominal e verbal":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/letras-portugues/concordancia-nominal/questoes",
+  "Regência nominal e verbal":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/letras-portugues/regencia-nominal/questoes",
+  "Colocação pronominal":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/letras-portugues/colocacao-pronominal/questoes",
+  "Significação das palavras":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/letras-portugues/semantica/questoes",
+  "Variação linguística":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/letras-portugues/variacao-linguistica/questoes",
+  "Redação oficial":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/letras-redacao-oficial/questoes",
+  "Ocupação e colonização":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/historia-historia-e-geografia-de-estados-e-municipios/historia-e-geografia-do-estado-de-pernambuco/questoes",
+  "A importância do açúcar":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/historia-historia/periodo-colonial-producao-de-riqueza-e-escravismo/questoes",
+  "Formação de Olinda e Recife":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/historia-historia-e-geografia-de-estados-e-municipios/historia-e-geografia-do-estado-de-pernambuco/questoes",
+  "A presença holandesa":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/historia-historia-e-geografia-de-estados-e-municipios/historia-e-geografia-do-estado-de-pernambuco/questoes",
+  "Movimentos de resistência e emancipacionistas":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/historia-historia-e-geografia-de-estados-e-municipios/historia-e-geografia-do-estado-de-pernambuco/questoes",
+  "Pernambuco e a República":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/historia-historia-e-geografia-de-estados-e-municipios/historia-e-geografia-do-estado-de-pernambuco/questoes",
+  "Manifestações da cultura popular":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/historia-historia-e-geografia-de-estados-e-municipios/historia-e-geografia-do-estado-de-pernambuco/questoes",
+  "Herança afrodescendente":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/historia-historia-e-geografia-de-estados-e-municipios/historia-e-geografia-do-estado-de-pernambuco/questoes",
+  "Compreensão de estruturas lógicas":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/matematica-raciocinio-logico/fundamentos-de-logica/questoes",
+  "Lógica de argumentação":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/matematica-raciocinio-logico/logica-de-argumentacao-diagramas-e-operadores-logicos/questoes",
+  "Diagramas lógicos":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/matematica-raciocinio-logico/diagramas-de-venn-conjuntos/questoes",
+  "Princípios de contagem/probabilidade":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/matematica-raciocinio-logico/probabilidade/questoes",
+  "Conceito de internet e intranet":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/tecnologia-da-informacao-nocoes-de-informatica/internet-e-intranet/questoes",
+  "Conceitos básicos internet/intranet":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/tecnologia-da-informacao-nocoes-de-informatica/internet-e-intranet/questoes",
+  "Conceitos de proteção e segurança":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/tecnologia-da-informacao-nocoes-de-informatica/procedimento-de-seguranca-e-back-up/questoes",
+  "Armazenamento e backup":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/tecnologia-da-informacao-seguranca-da-informacao/backup-em-seguranca-da-informacao/questoes",
+  "Organização e gerenciamento de arquivos":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/tecnologia-da-informacao-nocoes-de-informatica/windows-explorer-conceitos-de-organizacao-de-pastas-e-arquivos/questoes",
+  "Ambientes operacionais (Windows)":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/tecnologia-da-informacao-nocoes-de-informatica/windows/questoes",
+  "Ferramentas Office 2019 e LibreOffice 7":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/tecnologia-da-informacao-nocoes-de-informatica/word/questoes",
+  "Dos princípios fundamentais":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-direito-constitucional/principios-fundamentais-da-republica/questoes",
+  "Direitos e garantias fundamentais":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-direito-constitucional/direitos-individuais-e-coletivos/questoes",
+  "Organização do Estado":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-direito-constitucional/organizacao-politico-administrativa-do-estado/questoes",
+  "Organização dos Poderes":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-direito-constitucional/organizacao-dos-poderes/questoes",
+  "Defesa do Estado e instituições democráticas":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-direito-constitucional/defesa-do-estado-e-das-instituicoes-democraticas/questoes",
+  "Súmulas e jurisprudência dominante":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-direito-constitucional/sumula-vinculante/questoes",
+  "Teoria geral dos Direitos Humanos":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-direitos-humanos/questoes",
+  "Evolução histórica e gerações":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-direitos-humanos/questoes",
+  "Natureza jurídica da incorporação de normas":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-direitos-humanos/questoes",
+  "Declaração Universal dos Direitos Humanos":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-direitos-humanos/declaracao-universal-dos-direitos-humanos-dudh/questoes",
+  "Estatuto da Criança e do Adolescente":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-legislacao-extravagante/estatuto-da-crianca-e-do-adolescente-eca/questoes",
+  "Lei do Abuso de Autoridade":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-legislacao-extravagante/abuso-de-autoridade/questoes",
+  "Lei de Tortura":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-legislacao-extravagante/tortura-lei-n-9455-1997/questoes",
+  "Lei Maria da Penha":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-legislacao-extravagante/lei-maria-da-penha-lei-n-11340-2006/questoes",
+  "Lei dos Crimes de Preconceito de Raça ou de Cor":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-legislacao-extravagante/racismo-lei-7716-89/questoes",
+  "Lei dos Crimes Ambientais":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-legislacao-extravagante/lei-de-crimes-ambientais-lei-n-9605-1998/questoes",
+  "Lei dos Crimes Hediondos":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-legislacao-extravagante/crimes-hediondos-lei-n-8072-1990/questoes",
+  "Lei de Drogas":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-legislacao-extravagante/lei-de-drogas-lei-n-11343-2006/questoes",
+  "Estatuto dos Policiais Militares de PE":"https://www.qconcursos.com/questoes-militares/institutos/pm-pe",
+};
+const fallback={
+  "Língua Portuguesa":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/letras-portugues/questoes",
+  "História de Pernambuco":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/historia-historia-e-geografia-de-estados-e-municipios/historia-e-geografia-do-estado-de-pernambuco/questoes",
+  "Raciocínio Lógico":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/matematica-raciocinio-logico/questoes",
+  "Informática":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/tecnologia-da-informacao-nocoes-de-informatica/questoes",
+  "Direito Constitucional":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-direito-constitucional/questoes",
+  "D. Humanos e L. Extravagante":"https://www.qconcursos.com/questoes-de-concursos/disciplinas/direito-direitos-humanos/questoes",
+};
+const matIcon={"Língua Portuguesa":"📘","História de Pernambuco":"🏛","Raciocínio Lógico":"🔢","Informática":"💻","Direito Constitucional":"⚖️","D. Humanos e L. Extravagante":"🤝"};
+function getLink(mat,t){ return linkMap[t]||fallback[mat]||'#'; }
+
+// ===== CRONOGRAMA =====
+const cron=[];let dayId=1;
+function addDay(c,mat,t1,t2,t3){
+  const total=(mat.includes("Língua")||mat.includes("Raciocínio")||mat.includes("Constitucional"))?35:30;
+  const q=Math.floor(total/3);
+  cron.push({id:dayId++,sem:c,diaNum:dayId-1,mat,t1,t2,t3,q1:q,q2:q,q3:total-q-q});
+}
+addDay(1,"Língua Portuguesa","Compreensão e interpretação de textos","Tipologias e gêneros textuais","Ortografia oficial");
+addDay(1,"História de Pernambuco","Ocupação e colonização","A importância do açúcar","Formação de Olinda e Recife");
+addDay(1,"Raciocínio Lógico","Compreensão de estruturas lógicas","Lógica de argumentação","Diagramas lógicos");
+addDay(1,"Informática","Conceito de internet e intranet","Conceitos básicos internet/intranet","Conceitos de proteção e segurança");
+addDay(1,"Direito Constitucional","Dos princípios fundamentais","Direitos e garantias fundamentais","Organização do Estado");
+addDay(1,"D. Humanos e L. Extravagante","Teoria geral dos Direitos Humanos","Evolução histórica e gerações","Natureza jurídica da incorporação de normas");
+addDay(2,"Língua Portuguesa","Acentuação gráfica","Emprego das classes de palavras","Crase");
+addDay(2,"História de Pernambuco","A presença holandesa","Movimentos de resistência e emancipacionistas","Pernambuco e a República");
+addDay(2,"Raciocínio Lógico","Princípios de contagem/probabilidade","Compreensão de estruturas lógicas","Lógica de argumentação");
+addDay(2,"Informática","Armazenamento e backup","Organização e gerenciamento de arquivos","Ambientes operacionais (Windows)");
+addDay(2,"Direito Constitucional","Organização dos Poderes","Defesa do Estado e instituições democráticas","Súmulas e jurisprudência dominante");
+addDay(2,"D. Humanos e L. Extravagante","Declaração Universal dos Direitos Humanos","Estatuto da Criança e do Adolescente","Lei do Abuso de Autoridade");
+addDay(3,"Língua Portuguesa","Sintaxe da oração e período","Mecanismos de coesão textual","Pontuação");
+addDay(3,"História de Pernambuco","Manifestações da cultura popular","Herança afrodescendente","Ocupação e colonização");
+addDay(3,"Raciocínio Lógico","Diagramas lógicos","Princípios de contagem/probabilidade","Compreensão de estruturas lógicas");
+addDay(3,"Informática","Ferramentas Office 2019 e LibreOffice 7","Conceito de internet e intranet","Conceitos básicos internet/intranet");
+addDay(3,"Direito Constitucional","Dos princípios fundamentais","Direitos e garantias fundamentais","Organização do Estado");
+addDay(3,"D. Humanos e L. Extravagante","Lei de Tortura","Lei Maria da Penha","Lei dos Crimes de Preconceito de Raça ou de Cor");
+addDay(4,"Língua Portuguesa","Concordância nominal e verbal","Regência nominal e verbal","Colocação pronominal");
+addDay(4,"História de Pernambuco","A importância do açúcar","Formação de Olinda e Recife","A presença holandesa");
+addDay(4,"Raciocínio Lógico","Lógica de argumentação","Diagramas lógicos","Princípios de contagem/probabilidade");
+addDay(4,"Informática","Conceitos de proteção e segurança","Armazenamento e backup","Organização e gerenciamento de arquivos");
+addDay(4,"Direito Constitucional","Organização dos Poderes","Defesa do Estado e instituições democráticas","Súmulas e jurisprudência dominante");
+addDay(4,"D. Humanos e L. Extravagante","Lei dos Crimes Ambientais","Lei dos Crimes Hediondos","Lei de Drogas");
+addDay(5,"Língua Portuguesa","Significação das palavras","Variação linguística","Redação oficial");
+addDay(5,"História de Pernambuco","Movimentos de resistência e emancipacionistas","Pernambuco e a República","Manifestações da cultura popular");
+addDay(5,"Raciocínio Lógico","Compreensão de estruturas lógicas","Lógica de argumentação","Diagramas lógicos");
+addDay(5,"Informática","Ambientes operacionais (Windows)","Ferramentas Office 2019 e LibreOffice 7","Conceito de internet e intranet");
+addDay(5,"Direito Constitucional","Dos princípios fundamentais","Direitos e garantias fundamentais","Organização do Estado");
+addDay(5,"D. Humanos e L. Extravagante","Estatuto dos Policiais Militares de PE","Súmulas e jurisprudência dominante","Teoria geral dos Direitos Humanos");
+addDay(6,"Língua Portuguesa","Compreensão e interpretação de textos","Tipologias e gêneros textuais","Ortografia oficial");
+addDay(6,"História de Pernambuco","Herança afrodescendente","Ocupação e colonização","A importância do açúcar");
+addDay(6,"Raciocínio Lógico","Princípios de contagem/probabilidade","Compreensão de estruturas lógicas","Lógica de argumentação");
+addDay(6,"Informática","Conceito de internet e intranet","Conceitos de proteção e segurança","Armazenamento e backup");
+addDay(6,"Direito Constitucional","Organização dos Poderes","Defesa do Estado e instituições democráticas","Súmulas e jurisprudência dominante");
+addDay(6,"D. Humanos e L. Extravagante","Evolução histórica e gerações","Natureza jurídica da incorporação de normas","Declaração Universal dos Direitos Humanos");
+addDay(7,"Língua Portuguesa","Acentuação gráfica","Emprego das classes de palavras","Crase");
+addDay(7,"História de Pernambuco","Formação de Olinda e Recife","A presença holandesa","Movimentos de resistência e emancipacionistas");
+addDay(7,"Raciocínio Lógico","Diagramas lógicos","Princípios de contagem/probabilidade","Compreensão de estruturas lógicas");
+addDay(7,"Informática","Organização e gerenciamento de arquivos","Ambientes operacionais (Windows)","Ferramentas Office 2019 e LibreOffice 7");
+addDay(7,"Direito Constitucional","Dos princípios fundamentais","Direitos e garantias fundamentais","Organização do Estado");
+addDay(7,"D. Humanos e L. Extravagante","Estatuto da Criança e do Adolescente","Lei do Abuso de Autoridade","Lei de Tortura");
+addDay(8,"Língua Portuguesa","Sintaxe da oração e período","Mecanismos de coesão textual","Pontuação");
+addDay(8,"História de Pernambuco","Pernambuco e a República","Manifestações da cultura popular","Herança afrodescendente");
+addDay(8,"Raciocínio Lógico","Lógica de argumentação","Diagramas lógicos","Princípios de contagem/probabilidade");
+addDay(8,"Informática","Conceito de internet e intranet","Conceitos básicos internet/intranet","Conceitos de proteção e segurança");
+addDay(8,"Direito Constitucional","Organização dos Poderes","Defesa do Estado e instituições democráticas","Súmulas e jurisprudência dominante");
+addDay(8,"D. Humanos e L. Extravagante","Lei Maria da Penha","Lei dos Crimes de Preconceito de Raça ou de Cor","Lei dos Crimes Ambientais");
+addDay(9,"Língua Portuguesa","Concordância nominal e verbal","Regência nominal e verbal","Colocação pronominal");
+addDay(9,"História de Pernambuco","Ocupação e colonização","A importância do açúcar","Formação de Olinda e Recife");
+addDay(9,"Raciocínio Lógico","Compreensão de estruturas lógicas","Lógica de argumentação","Diagramas lógicos");
+addDay(9,"Informática","Armazenamento e backup","Organização e gerenciamento de arquivos","Ambientes operacionais (Windows)");
+addDay(9,"Direito Constitucional","Dos princípios fundamentais","Direitos e garantias fundamentais","Organização do Estado");
+addDay(9,"D. Humanos e L. Extravagante","Lei dos Crimes Hediondos","Lei de Drogas","Estatuto dos Policiais Militares de PE");
+addDay(10,"Língua Portuguesa","Significação das palavras","Variação linguística","Redação oficial");
+addDay(10,"História de Pernambuco","A presença holandesa","Movimentos de resistência e emancipacionistas","Pernambuco e a República");
+addDay(10,"Raciocínio Lógico","Princípios de contagem/probabilidade","Compreensão de estruturas lógicas","Lógica de argumentação");
+addDay(10,"Informática","Ferramentas Office 2019 e LibreOffice 7","Conceito de internet e intranet","Conceitos básicos internet/intranet");
+addDay(10,"Direito Constitucional","Organização dos Poderes","Defesa do Estado e instituições democráticas","Súmulas e jurisprudência dominante");
+addDay(10,"D. Humanos e L. Extravagante","Súmulas e jurisprudência dominante","Teoria geral dos Direitos Humanos","Evolução histórica e gerações");
+
+// ===== STATE =====
+let P={}, QE={}, QA={}, filtroAtual='todos';
+function load(){
+  try{ P=JSON.parse(localStorage.getItem('pmpe60_v3')||'{}'); }catch(e){}
+  try{ QE=JSON.parse(localStorage.getItem('pmpe60_qe')||'{}'); }catch(e){}
+  try{ QA=JSON.parse(localStorage.getItem('pmpe60_qa')||'{}'); }catch(e){}
+}
+function save(){
+  localStorage.setItem('pmpe60_v3',JSON.stringify(P));
+  localStorage.setItem('pmpe60_qe',JSON.stringify(QE));
+  localStorage.setItem('pmpe60_qa',JSON.stringify(QA));
+  updateStats();
+}
+function salvarExtra(diaId, topico, val, input){
+  const n=Math.max(0,parseInt(val)||0);
+  input.value=n;
+  QE[`${diaId}-${topico}`]=n;
+  localStorage.setItem('pmpe60_qe',JSON.stringify(QE));
+  const savedSpan=input.nextElementSibling;
+  savedSpan.textContent='✓';
+  setTimeout(()=>{ savedSpan.textContent=''; },1500);
+  updateStats();
+}
+function salvarAE(diaId, tipo, val, input){
+  const n=Math.max(0,parseInt(val)||0);
+  input.value=n;
+  QA[`${diaId}-${tipo}`]=n;
+  localStorage.setItem('pmpe60_qa',JSON.stringify(QA));
+  const savedSpan=input.nextElementSibling;
+  savedSpan.textContent='✓';
+  setTimeout(()=>{ savedSpan.textContent=''; },1500);
+  // atualiza taxa no mesmo dia-block sem re-renderizar o painel
+  const taxaEl=input.closest('.ae-row').querySelector('.ae-taxa');
+  if(taxaEl){
+    const a=parseInt(QA[`${diaId}-a`])||0;
+    const e=parseInt(QA[`${diaId}-e`])||0;
+    const tot=a+e;
+    taxaEl.textContent=tot>0?`${Math.round(a/tot*100)}% acertos`:'';
+  }
+  updateStats();
+}
+function diasDoCiclo(c){ return cron.filter(d=>d.sem===c); }
+function concCiclo(c){ return diasDoCiclo(c).filter(d=>P[d.id]).length; }
+function totalConc(){ return Object.keys(P).filter(k=>P[k]).length; }
+function pctGeral(){ return Math.round(totalConc()/cron.length*100); }
+function totalQ(){ return cron.filter(d=>P[d.id]).reduce((a,d)=>a+(d.q1+d.q2+d.q3),0); }
+function totalExtras(){ return Object.values(QE).reduce((a,v)=>a+(parseInt(v)||0),0); }
+function totalAcertos(){ return Object.entries(QA).filter(([k])=>k.endsWith('-a')).reduce((a,[,v])=>a+(parseInt(v)||0),0); }
+function totalErros(){ return Object.entries(QA).filter(([k])=>k.endsWith('-e')).reduce((a,[,v])=>a+(parseInt(v)||0),0); }
+function setText(id,v){ const el=document.getElementById(id); if(el)el.textContent=v; }
+function setWidth(id,p){ const el=document.getElementById(id); if(el)el.style.width=p+'%'; }
+
+// ===== STATS =====
+function updateStats(){
+  const done=totalConc(), p=pctGeral(), q=totalQ(), ext=totalExtras(), rest=cron.length-done;
+  const ac=totalAcertos(), er=totalErros(), totAE=ac+er;
+  const taxaAcerto=totAE>0?Math.round(ac/totAE*100):0;
+  const media=done>0?Math.round((q+ext)/done):0;
+  setText('globalPct',p+'%'); setWidth('globalBar',p);
+  setText('statDone',done); setText('statQ',q);
+  setText('sbPct',p+'%'); setWidth('sbFill',p);
+  setText('mobilePct',p+'%');
+  setText('sDias',done); setText('sQuestoes',q); setText('sPct',p+'%');
+  setText('sMedia',media); setText('sRestantes',rest);
+  setText('sExtras',ext);
+  setText('sAcertos',ac);
+  setText('sErros',er);
+  setText('sTaxa',totAE>0?taxaAcerto+'%':'—');
+  setWidth('sBarDias',p);
+  setWidth('sBarAcertos',taxaAcerto);
+  renderDisciplineBars();
+  pizzaRender();
+  // atualiza botões dos seletores se visíveis
+  if(pizzaModo==='ciclo') pizzaRenderBtnsCiclo();
+  if(pizzaModo==='dia') pizzaRenderBtnsDia();
+}
+function renderDisciplineBars(){
+  const cont=document.getElementById('disciplineBars'); if(!cont)return;
+  const mats=["Língua Portuguesa","História de Pernambuco","Raciocínio Lógico","Informática","Direito Constitucional","D. Humanos e L. Extravagante"];
+  cont.innerHTML='';
+  mats.forEach(m=>{
+    const dias=cron.filter(d=>d.mat===m);
+    const c=dias.filter(d=>P[d.id]).length;
+    const p=dias.length?Math.round(c/dias.length*100):0;
+    cont.innerHTML+=`<div class="discipline-row"><span class="disc-name">${matIcon[m]||''} ${m}</span><div class="disc-track"><div class="disc-fill" style="width:${p}%"></div></div><span class="disc-pct">${p}%</span></div>`;
+  });
+}
+
+// ===== RENDER CICLOS (grid compacto) =====
+let cicloAberto = null;
+
+function renderCiclos(){
+  const grid=document.getElementById('ciclosGrid'); if(!grid)return;
+  grid.innerHTML='';
+  for(let c=1;c<=10;c++){
+    const dias=diasDoCiclo(c);
+    const conc=concCiclo(c), tot=dias.length, p=Math.round(conc/tot*100);
+    const full=conc===tot;
+    if(filtroAtual==='concluidos'&&!full) continue;
+    if(filtroAtual==='pendentes'&&full) continue;
+
+    const card=document.createElement('div');
+    card.className='wcard'+(full?' done-full':'')+(cicloAberto===c?' active-card':'');
+    card.dataset.ciclo=c;
+    card.innerHTML=`
+      <div class="wnum">${c<10?'0'+c:c}</div>
+      <div class="wlabel">Ciclo ${c}</div>
+      <div class="wfase">dias ${(c-1)*6+1}–${c*6}</div>
+      <div class="wminibar"><div class="wminifill" style="width:${p}%"></div></div>
+      <div class="wcount"><span>${conc}/${tot}${full?' ✓':''}</span><span class="wpct">${p}%</span></div>`;
+    card.addEventListener('click',()=>togglePainel(c));
+    grid.appendChild(card);
+  }
+  // Se havia um painel aberto, re-renderiza ele
+  if(cicloAberto) renderPainel(cicloAberto);
+  else document.getElementById('cicloPainel').classList.remove('open');
+}
+
+function togglePainel(c){
+  if(cicloAberto===c){ cicloAberto=null; document.getElementById('cicloPainel').classList.remove('open'); renderCiclos(); return; }
+  cicloAberto=c;
+  renderCiclos(); // re-render cards para marcar active
+  renderPainel(c);
+  // scroll suave até o painel
+  setTimeout(()=>{ document.getElementById('cicloPainel').scrollIntoView({behavior:'smooth',block:'nearest'}); },80);
+}
+
+function renderPainel(c){
+  const painel=document.getElementById('cicloPainel');
+  const dias=diasDoCiclo(c);
+  const conc=concCiclo(c), tot=dias.length, p=Math.round(conc/tot*100);
+  const full=conc===tot;
+
+  const diasHTML=dias.map(d=>{
+    const done=!!P[d.id];
+    const e1=QE[`${d.id}-1`]||0, e2=QE[`${d.id}-2`]||0, e3=QE[`${d.id}-3`]||0;
+    const totalExtra=e1+e2+e3;
+    const ac=parseInt(QA[`${d.id}-a`])||0;
+    const er=parseInt(QA[`${d.id}-e`])||0;
+    const totAE=ac+er;
+    const taxa=totAE>0?Math.round(ac/totAE*100):null;
+    return `<div class="dia-block${done?' dia-done':''}">
+      <div class="dia-header">
+        <div class="dia-title">
+          <span class="dia-num">Dia ${d.diaNum}</span>
+          <span class="mat-name">${matIcon[d.mat]||''} ${d.mat}</span>
+        </div>
+        <label class="dia-chk-wrap">
+          <input type="checkbox" class="dia-chk" ${done?'checked':''} onchange="toggleDia(${d.id},this.checked,${c})">
+          <span class="dia-chk-box"></span>
+        </label>
+      </div>
+      <div class="topicos-list">
+        <div class="topico-item">
+          <span class="topico-num">1</span>
+          <span class="topico-nome">${d.t1}</span>
+          <span class="topico-q">${d.q1}q</span>
+          <a href="${getLink(d.mat,d.t1)}" target="_blank" rel="noopener" class="topico-link">🔗 Resolver</a>
+        </div>
+        <div class="topico-extra">
+          <span class="extra-label">➕ Fiz mais:</span>
+          <input type="number" min="0" max="999" class="extra-input" value="${e1}" placeholder="0"
+            onchange="salvarExtra(${d.id},1,this.value,this)" oninput="this.nextElementSibling.textContent=''">
+          <span class="extra-saved"></span>
+          <span class="extra-total">${e1>0?`+${e1} extras`:''}</span>
+        </div>
+        <div class="topico-item">
+          <span class="topico-num">2</span>
+          <span class="topico-nome">${d.t2}</span>
+          <span class="topico-q">${d.q2}q</span>
+          <a href="${getLink(d.mat,d.t2)}" target="_blank" rel="noopener" class="topico-link">🔗 Resolver</a>
+        </div>
+        <div class="topico-extra">
+          <span class="extra-label">➕ Fiz mais:</span>
+          <input type="number" min="0" max="999" class="extra-input" value="${e2}" placeholder="0"
+            onchange="salvarExtra(${d.id},2,this.value,this)" oninput="this.nextElementSibling.textContent=''">
+          <span class="extra-saved"></span>
+          <span class="extra-total">${e2>0?`+${e2} extras`:''}</span>
+        </div>
+        <div class="topico-item">
+          <span class="topico-num">3</span>
+          <span class="topico-nome">${d.t3}</span>
+          <span class="topico-q">${d.q3}q</span>
+          <a href="${getLink(d.mat,d.t3)}" target="_blank" rel="noopener" class="topico-link">🔗 Resolver</a>
+        </div>
+        <div class="topico-extra">
+          <span class="extra-label">➕ Fiz mais:</span>
+          <input type="number" min="0" max="999" class="extra-input" value="${e3}" placeholder="0"
+            onchange="salvarExtra(${d.id},3,this.value,this)" oninput="this.nextElementSibling.textContent=''">
+          <span class="extra-saved"></span>
+          <span class="extra-total">${e3>0?`+${e3} extras`:''}</span>
+        </div>
+      </div>
+      <div class="ae-row">
+        <div class="ae-group">
+          <span class="ae-label acerto">✅ Acertos:</span>
+          <input type="number" min="0" max="9999" class="ae-input acerto" value="${ac||''}" placeholder="0"
+            onchange="salvarAE(${d.id},'a',this.value,this)" oninput="this.nextElementSibling.textContent=''">
+          <span class="ae-saved"></span>
+        </div>
+        <div class="ae-group">
+          <span class="ae-label erro">❌ Erros:</span>
+          <input type="number" min="0" max="9999" class="ae-input erro" value="${er||''}" placeholder="0"
+            onchange="salvarAE(${d.id},'e',this.value,this)" oninput="this.nextElementSibling.textContent=''">
+          <span class="ae-saved"></span>
+        </div>
+        <span class="ae-taxa">${taxa!==null?taxa+'% acertos':''}</span>
+      </div>
+      ${totalExtra>0?`<div style="margin-top:6px;font-family:var(--fh);font-size:.62rem;color:var(--goldl);text-align:right">⚡ +${totalExtra} questões extras</div>`:''}
+    </div>`;
+  }).join('');
+
+  painel.innerHTML=`
+    <div class="painel-header">
+      <span class="painel-titulo">CICLO ${c<10?'0'+c:c} · DIAS ${(c-1)*6+1}–${c*6}</span>
+      <div class="painel-meta">
+        <span class="painel-badge ${full?'done':'pending'}">${full?'✓ Concluído':'Pendente'}</span>
+        <button class="painel-close" onclick="togglePainel(${c})">✕ Fechar</button>
+      </div>
+    </div>
+    <div class="painel-body">
+      <div class="painel-prog">
+        <div class="painel-prog-track"><div class="painel-prog-fill" style="width:${p}%"></div></div>
+        <div class="painel-prog-txt"><span>${conc} de ${tot} dias concluídos</span><span>${p}%</span></div>
+      </div>
+      ${diasHTML}
+      <div class="painel-actions">
+        <button class="btn ${full?'btn-grn undo':'btn-grn'}" onclick="marcarCiclo(${c},${!full})">${full?'↺ Desmarcar Tudo':'✓ Marcar Tudo'}</button>
+        <a href="${fallback[dias[0]?.mat]||'#'}" target="_blank" rel="noopener" class="btn btn-out">🔗 Ver Questões</a>
+        <button class="btn btn-out" onclick="togglePainel(${c})">✕ Fechar</button>
+      </div>
+    </div>`;
+  painel.classList.add('open');
+}
+
+function setFiltro(f,btn){
+  filtroAtual=f;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  cicloAberto=null;
+  renderCiclos();
+}
+
+function toggleDia(id,val,ciclo){
+  if(val)P[id]=true; else delete P[id];
+  save();
+  renderPainel(ciclo); // re-render só o painel, sem fechar
+  // atualiza o card do ciclo sem re-renderizar tudo
+  document.querySelectorAll('.wcard').forEach(el=>{
+    if(parseInt(el.dataset.ciclo)===ciclo){
+      const dias=diasDoCiclo(ciclo), conc=concCiclo(ciclo), tot=dias.length, p=Math.round(conc/tot*100);
+      const full=conc===tot;
+      el.className='wcard'+(full?' done-full':'')+' active-card';
+      el.querySelector('.wnum').style.background=full?'linear-gradient(160deg,var(--grnl),var(--grn))':'linear-gradient(160deg,var(--goldl),var(--gold))';
+      el.querySelector('.wnum').style.webkitBackgroundClip='text';
+      el.querySelector('.wnum').style.webkitTextFillColor='transparent';
+      el.querySelector('.wminifill').style.width=p+'%';
+      const wcount=el.querySelector('.wcount');
+      wcount.innerHTML=`<span>${conc}/${tot}${full?' ✓':''}</span><span class="wpct">${p}%</span>`;
+    }
+  });
+  if(val) toast(`✓ Dia ${id} concluído! 💪`);
+}
+
+function marcarCiclo(ciclo,valor){
+  diasDoCiclo(ciclo).forEach(d=>{ if(valor)P[d.id]=true; else delete P[d.id]; });
+  save(); renderCiclos();
+  toast(valor?`✓ Ciclo ${ciclo} concluído! 🏆`:`↺ Ciclo ${ciclo} resetado.`);
+}
+
+// ===== MODAL =====
+function confirmarLimpar(){
+  const w=document.getElementById('modalWrap');
+  w.style.cssText='display:flex;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:9998;align-items:center;justify-content:center;backdrop-filter:blur(4px)';
+  w.innerHTML=`<div class="modal-box">
+    <h3>⚠ Limpar Progresso?</h3>
+    <p>Todos os 60 dias serão desmarcados.</p>
+    <p style="font-size:.72rem;color:#f87171;margin-top:4px">Esta ação não pode ser desfeita.</p>
+    <div class="modal-actions">
+      <button class="btn btn-red" onclick="executarLimpar()" style="border:1px solid #ef444440">Sim, limpar</button>
+      <button class="btn btn-out" onclick="fecharModal()">Cancelar</button>
+    </div>
+  </div>`;
+}
+function executarLimpar(){ P={}; QE={}; QA={}; save(); renderCiclos(); fecharModal(); toast('🗑 Progresso limpo.'); }
+function fecharModal(){ const w=document.getElementById('modalWrap'); w.style.display='none'; w.innerHTML=''; }
+
+// ===== EXPORT =====
+function exportarJSON(){
+  const ac=totalAcertos(), er=totalErros(), tot=ac+er;
+  const data={exportado:new Date().toLocaleString('pt-BR'),totalDias:cron.length,concluidos:totalConc(),percentual:pctGeral()+'%',questoesObrigatorias:totalQ(),questoesExtras:totalExtras(),totalGeral:totalQ()+totalExtras(),acertos:ac,erros:er,taxaAcertos:tot>0?Math.round(ac/tot*100)+'%':'—',progresso:P,extras:QE,acertosErros:QA};
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download='pmpe60dias_progresso.json'; a.click();
+  URL.revokeObjectURL(url);
+  toast('💾 Progresso exportado!');
+}
+
+// ===== PIZZA CHARTS =====
+let pizzaModo='geral', pizzaCicloSel=1, pizzaDiaSel=1;
+let pizzaCanvasMap={};
+
+function pizzaSetModo(modo, btn){
+  pizzaModo=modo;
+  document.querySelectorAll('.pizza-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('pizzaSelectorCiclo').style.display=(modo==='ciclo')?'flex':'none';
+  document.getElementById('pizzaSelectorDia').style.display=(modo==='dia')?'flex':'none';
+  if(modo==='ciclo') pizzaRenderBtnsCiclo();
+  if(modo==='dia') pizzaRenderBtnsDia();
+  pizzaRender();
+}
+
+function pizzaAcertosDia(id){ return parseInt(QA[`${id}-a`])||0; }
+function pizzaErrosDia(id){ return parseInt(QA[`${id}-e`])||0; }
+function pizzaTemDados(id){ return pizzaAcertosDia(id)+pizzaErrosDia(id)>0; }
+
+function pizzaRenderBtnsCiclo(){
+  const wrap=document.getElementById('pizzaBtnsCiclo'); if(!wrap)return;
+  wrap.innerHTML='';
+  for(let c=1;c<=10;c++){
+    const dias=diasDoCiclo(c);
+    const temDados=dias.some(d=>pizzaTemDados(d.id));
+    const full=concCiclo(c)===dias.length;
+    const btn=document.createElement('button');
+    btn.className='pizza-sel-btn'+(full?' done':'')+(temDados?' has-data':'')+(pizzaCicloSel===c?' active':'');
+    btn.textContent=c<10?'0'+c:c;
+    btn.title='Ciclo '+c+(temDados?' · com dados':'');
+    btn.onclick=()=>{ pizzaCicloSel=c; pizzaRenderBtnsCiclo(); pizzaRender(); };
+    wrap.appendChild(btn);
+  }
+}
+
+function pizzaRenderBtnsDia(){
+  const wrap=document.getElementById('pizzaBtnsDia'); if(!wrap)return;
+  wrap.innerHTML='';
+  cron.forEach(d=>{
+    const temDados=pizzaTemDados(d.id);
+    const done=!!P[d.id];
+    const btn=document.createElement('button');
+    btn.className='pizza-sel-btn'+(done?' done':'')+(temDados?' has-data':'')+(pizzaDiaSel===d.id?' active':'');
+    btn.textContent=d.id;
+    btn.title='Dia '+d.id+' — '+d.mat+(temDados?' · com dados':'');
+    btn.onclick=()=>{ pizzaDiaSel=d.id; pizzaRenderBtnsDia(); pizzaRender(); };
+    wrap.appendChild(btn);
+  }); 
+}
+
+/* Desenha SVG pizza puro */
+function pizzaDrawSVG(canvasId, ac, er, size){
+  size=size||140;
+  const total=ac+er;
+  const r=size/2-6;
+  const cx=size/2, cy=size/2;
+  if(total===0){
+    return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}"><circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#22223a" stroke-width="10"/><text x="${cx}" y="${cy+5}" text-anchor="middle" fill="#666680" font-size="11" font-family="Barlow Condensed" font-weight="700">SEM DADOS</text></svg>`;
+  }
+  const pctAc=ac/total;
+  const pctEr=er/total;
+  // Converte para arco SVG
+  function polarToCartesian(cx,cy,r,angleDeg){
+    const a=(angleDeg-90)*Math.PI/180;
+    return {x:cx+r*Math.cos(a),y:cy+r*Math.sin(a)};
+  }
+  function arcPath(cx,cy,r,startDeg,endDeg,color){
+    if(endDeg-startDeg>=360) endDeg=startDeg+359.99;
+    const s=polarToCartesian(cx,cy,r,startDeg);
+    const e=polarToCartesian(cx,cy,r,endDeg);
+    const large=endDeg-startDeg>180?1:0;
+    return `<path d="M${cx},${cy} L${s.x},${s.y} A${r},${r} 0 ${large},1 ${e.x},${e.y} Z" fill="${color}"/>`;
+  }
+  const gapDeg=total>0?1.5:0;
+  const acEnd=360*pctAc-gapDeg;
+  const erStart=360*pctAc+gapDeg;
+  let paths='';
+  if(ac>0) paths+=arcPath(cx,cy,r,0,acEnd,'#22c55e');
+  if(er>0) paths+=arcPath(cx,cy,r,erStart,360,'#f87171');
+  // círculo interno (donut)
+  const ir=r*0.58;
+  const taxaPct=Math.round(ac/total*100);
+  const taxaColor=taxaPct>=70?'#22c55e':taxaPct>=50?'#c9a84c':'#f87171';
+  return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">${paths}<circle cx="${cx}" cy="${cy}" r="${ir}" fill="#14142a"/><text x="${cx}" y="${cy-4}" text-anchor="middle" fill="${taxaColor}" font-size="${size<100?11:14}" font-family="Bebas Neue" font-weight="700">${taxaPct}%</text><text x="${cx}" y="${cy+12}" text-anchor="middle" fill="#666680" font-size="${size<100?8:9}" font-family="Barlow Condensed" font-weight="700">ACERTOS</text></svg>`;
+}
+
+function pizzaRender(){
+  const wrap=document.getElementById('pizzaChartsWrap'); if(!wrap)return;
+
+  if(pizzaModo==='geral'){
+    const ac=totalAcertos(), er=totalErros(), total=ac+er;
+    if(total===0){
+      wrap.innerHTML='<div class="pizza-empty"><span>📝</span>Nenhum acerto ou erro registrado ainda.<br>Abra um ciclo e registre seu desempenho!</div>';
+      return;
+    }
+    const taxaPct=Math.round(ac/total*100);
+    const taxaColor=taxaPct>=70?'var(--grnl)':taxaPct>=50?'var(--goldl)':'#f87171';
+    const svgBig=pizzaDrawSVG('geral',ac,er,180);
+    wrap.innerHTML=`
+      <div class="pizza-global-wrap">
+        <div class="pizza-canvas-box">${svgBig}</div>
+        <div class="pizza-legend">
+          <div style="font-family:var(--fd);font-size:2rem;color:${taxaColor};line-height:1;margin-bottom:6px">${taxaPct}%</div>
+          <div style="font-family:var(--fh);font-size:.6rem;font-weight:700;letter-spacing:.12em;color:var(--tx3);text-transform:uppercase;margin-bottom:16px">Taxa de Acertos Global</div>
+          <div class="pizza-legend-item">
+            <div class="pizza-legend-dot" style="background:#22c55e"></div>
+            <div class="pizza-legend-info">
+              <span class="pizza-legend-name">✅ Acertos</span>
+              <span class="pizza-legend-val">${ac} questões</span>
+            </div>
+          </div>
+          <div class="pizza-legend-item">
+            <div class="pizza-legend-dot" style="background:#f87171"></div>
+            <div class="pizza-legend-info">
+              <span class="pizza-legend-name">❌ Erros</span>
+              <span class="pizza-legend-val">${er} questões</span>
+            </div>
+          </div>
+          <div class="pizza-legend-item">
+            <div class="pizza-legend-dot" style="background:var(--gold)"></div>
+            <div class="pizza-legend-info">
+              <span class="pizza-legend-name">📊 Total</span>
+              <span class="pizza-legend-val">${total} questões</span>
+            </div>
+          </div>
+        </div>
+      </div>`;
+    return;
+  }
+
+  if(pizzaModo==='ciclo'){
+    const dias=diasDoCiclo(pizzaCicloSel);
+    const acCiclo=dias.reduce((s,d)=>s+pizzaAcertosDia(d.id),0);
+    const erCiclo=dias.reduce((s,d)=>s+pizzaErrosDia(d.id),0);
+    const totCiclo=acCiclo+erCiclo;
+    const taxaCiclo=totCiclo>0?Math.round(acCiclo/totCiclo*100):null;
+    const taxaColor=taxaCiclo!==null?(taxaCiclo>=70?'var(--grnl)':taxaCiclo>=50?'var(--goldl)':'#f87171'):'var(--tx3)';
+    const svgCiclo=pizzaDrawSVG('ciclo',acCiclo,erCiclo,130);
+    let diasHTML=dias.map(d=>{
+      const ac=pizzaAcertosDia(d.id), er=pizzaErrosDia(d.id), tot=ac+er;
+      const svgMini=pizzaDrawSVG('mini-'+d.id,ac,er,72);
+      return `<div class="pizza-dia-card${tot===0?' no-data':''}">
+        <div class="pizza-dia-mini">${svgMini}</div>
+        <div class="pizza-dia-info">
+          <div class="pizza-dia-num">Dia ${d.id}</div>
+          <div class="pizza-dia-mat">${matIcon[d.mat]||''} ${d.mat}</div>
+          ${tot>0?`<div class="pizza-dia-stats"><span class="pizza-dia-ac">✅ ${ac}</span><span class="pizza-dia-er">❌ ${er}</span></div>`:`<div class="pizza-dia-nodata">Sem dados</div>`}
+        </div>
+        ${tot>0?`<div class="pizza-dia-taxa">${Math.round(ac/tot*100)}%</div>`:''}
+      </div>`;
+    }).join('');
+    wrap.innerHTML=`
+      <div style="display:flex;align-items:center;gap:24px;margin-bottom:20px;flex-wrap:wrap">
+        <div>${svgCiclo}</div>
+        <div>
+          <div style="font-family:var(--fd);font-size:.8rem;color:var(--tx3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px">Ciclo ${pizzaCicloSel<10?'0'+pizzaCicloSel:pizzaCicloSel} · Dias ${(pizzaCicloSel-1)*6+1}–${pizzaCicloSel*6}</div>
+          ${taxaCiclo!==null?`<div style="font-family:var(--fd);font-size:2.2rem;color:${taxaColor};line-height:1">${taxaCiclo}%</div><div style="font-family:var(--fh);font-size:.6rem;font-weight:700;letter-spacing:.1em;color:var(--tx3);text-transform:uppercase;margin-top:2px">Taxa de acertos</div>`:'<div style="font-family:var(--fh);font-size:.72rem;color:var(--tx3)">Nenhum dado no ciclo</div>'}
+          ${totCiclo>0?`<div style="display:flex;gap:16px;margin-top:12px"><span style="font-family:var(--fh);font-size:.65rem;font-weight:800;color:var(--grnl)">✅ ${acCiclo} acertos</span><span style="font-family:var(--fh);font-size:.65rem;font-weight:800;color:#f87171">❌ ${erCiclo} erros</span></div>`:''}
+        </div>
+      </div>
+      <div class="pizza-ciclo-header">Dias do Ciclo ${pizzaCicloSel<10?'0'+pizzaCicloSel:pizzaCicloSel}</div>
+      <div class="pizza-dias-list">${diasHTML}</div>`;
+    return;
+  }
+
+  if(pizzaModo==='dia'){
+    const d=cron.find(x=>x.id===pizzaDiaSel);
+    if(!d){ wrap.innerHTML='<div class="pizza-empty"><span>🔍</span>Dia não encontrado.</div>'; return; }
+    const ac=pizzaAcertosDia(d.id), er=pizzaErrosDia(d.id), total=ac+er;
+    if(total===0){
+      const svgEmpty=pizzaDrawSVG('dia-empty',0,0,160);
+      wrap.innerHTML=`<div class="pizza-global-wrap">${svgEmpty}<div class="pizza-legend"><div style="font-family:var(--fh);font-size:.68rem;font-weight:700;color:var(--tx3)">Abra o Ciclo ${Math.ceil(d.id/6)} e registre acertos e erros do Dia ${d.id}.</div></div></div>`;
+      return;
+    }
+    const taxaPct=Math.round(ac/total*100);
+    const taxaColor=taxaPct>=70?'var(--grnl)':taxaPct>=50?'var(--goldl)':'#f87171';
+    const svgDia=pizzaDrawSVG('dia-'+d.id,ac,er,180);
+    wrap.innerHTML=`
+      <div class="pizza-global-wrap">
+        <div>${svgDia}</div>
+        <div class="pizza-legend">
+          <div style="font-family:var(--fh);font-size:.62rem;font-weight:700;letter-spacing:.1em;color:var(--tx3);text-transform:uppercase;margin-bottom:4px">Dia ${d.id} · ${matIcon[d.mat]||''} ${d.mat}</div>
+          <div style="font-family:var(--fd);font-size:2.2rem;color:${taxaColor};line-height:1;margin-bottom:2px">${taxaPct}%</div>
+          <div style="font-family:var(--fh);font-size:.6rem;font-weight:700;letter-spacing:.12em;color:var(--tx3);text-transform:uppercase;margin-bottom:16px">Taxa de Acertos</div>
+          <div class="pizza-legend-item"><div class="pizza-legend-dot" style="background:#22c55e"></div><div class="pizza-legend-info"><span class="pizza-legend-name">✅ Acertos</span><span class="pizza-legend-val">${ac} questões</span></div></div>
+          <div class="pizza-legend-item"><div class="pizza-legend-dot" style="background:#f87171"></div><div class="pizza-legend-info"><span class="pizza-legend-name">❌ Erros</span><span class="pizza-legend-val">${er} questões</span></div></div>
+          <div class="pizza-legend-item"><div class="pizza-legend-dot" style="background:var(--gold)"></div><div class="pizza-legend-info"><span class="pizza-legend-name">📊 Total</span><span class="pizza-legend-val">${total} questões</span></div></div>
+          <div style="margin-top:12px;font-family:var(--fh);font-size:.6rem;color:var(--tx3)">Ciclo ${Math.ceil(d.id/6)} · ${P[d.id]?'✓ Concluído':'Pendente'}</div>
+        </div>
+      </div>`;
+  }
+}
+
+// ===== TOAST =====
+function toast(msg){
+  const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(window._toast); window._toast=setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+// ===== SIDEBAR MOBILE =====
+function initSidebar(){
+  const ham=document.getElementById('hamburger'),sb=document.getElementById('sidebar'),ov=document.getElementById('overlay');
+  if(!ham)return;
+  ham.addEventListener('click',()=>{
+    const open=sb.classList.toggle('open'); ham.classList.toggle('open',open);
+    ov.classList.toggle('active',open); document.body.style.overflow=open?'hidden':'';
+  });
+  ov.addEventListener('click',()=>{ sb.classList.remove('open'); ham.classList.remove('open'); ov.classList.remove('active'); document.body.style.overflow=''; });
+  document.querySelectorAll('.nav-item').forEach(link=>{
+    link.addEventListener('click',()=>{
+      if(window.innerWidth<=1024){ sb.classList.remove('open'); ham.classList.remove('open'); ov.classList.remove('active'); document.body.style.overflow=''; }
+      document.querySelectorAll('.nav-item').forEach(l=>l.classList.remove('active'));
+      link.classList.add('active');
+    });
+  });
+}
+
+// ===== SCROLL SPY =====
+function initScrollSpy(){
+  const ids=['inicio','ciclos','estatisticas','sobre'];
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ const id=e.target.id; document.querySelectorAll('.nav-item').forEach(l=>l.classList.toggle('active',l.dataset.section===id)); } });
+  },{rootMargin:'-40% 0px -60% 0px',threshold:0});
+  ids.forEach(id=>{ const s=document.getElementById(id); if(s)obs.observe(s); });
+}
+
+// ===== ANIMATIONS =====
+function animateCards(){
+  document.querySelectorAll('.wcard, .stat-card, .sobre-card').forEach((c,i)=>{
+    if(c._animated)return; c._animated=true;
+    c.style.opacity='0'; c.style.transform='translateY(16px)';
+    c.style.transition=`opacity 0.35s ease ${i*30}ms, transform 0.35s ease ${i*30}ms`;
+    const obs=new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='translateY(0)'; obs.unobserve(e.target); } });
+    },{threshold:0.06});
+    obs.observe(c);
+  });
+}
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded',()=>{
+  load(); renderCiclos(); updateStats(); initSidebar(); initScrollSpy();
+  pizzaRender();
+  requestAnimationFrame(()=>setTimeout(animateCards,80));
+});
+
+// Zera extras do localStorage se causarem exibição incorreta no statQ
+(function fixLegacyExtras(){
+  try{
+    const stored=localStorage.getItem('pmpe60_qe');
+    if(stored && stored!=='{}'){
+      // mantém no QE para uso interno mas statQ agora só exibe questões obrigatórias
+    }
+  }catch(e){}
+})();
+</script>
+</body>
+</html>
